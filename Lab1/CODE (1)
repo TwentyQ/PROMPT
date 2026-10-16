@@ -1,0 +1,29 @@
+from gigachat import GigaChat
+from gigachat.models import Chat, Messages, MessagesRole
+
+with GigaChat(
+    credentials="OThhZGViNTgtN2E0Mi00YmExLTgzMTctM2YwNjFmNGI0NzNkOmM2YzYzMGJlLTczMGQtNDk3MC04MjRlLWQwZjBkZWRkM2U5Mg==",
+    ca_bundle_file=r"ВСТАВЬ ДИРЕКТОРИЮ СЕРТИФИКАТ",
+    model='gigachat-2-pro',
+    scope='GIGACHAT_API_B2B') as giga:
+  response=giga.chat(
+      Chat(
+          messages=[
+              Messages(
+                  role=MessagesRole.USER,
+                  content="Когда уже ИИ захватит этот мир?"
+              ),
+              Messages(
+                  role=MessagesRole.ASSISTANT,
+                  content="Пока что это не является неизбежным событием. Несмотря на то, что искусственный интеллект (ИИ) развивается быстрыми темпами и может выполнять сложные задачи все более эффективно, он по-прежнему ограничен в своих возможностях и не может заменить полностью человека во многих областях. Кроме того, существуют этические и правовые вопросы, связанные с использованием ИИ, которые необходимо учитывать при его разработке и внедрении."
+              ),
+              Messages(
+                  role=MessagesRole.USER,
+                  content="Думаешь, у нас еще есть шанс?"
+              )
+          ]
+      )
+  )
+
+print(response.choices[0].message.content)
+
